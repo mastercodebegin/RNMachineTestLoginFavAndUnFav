@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { View, StyleSheet, Image, FlatList, TouchableOpacity } from 'react-native'
+import { View, StyleSheet, Image, FlatList, TouchableOpacity,SafeAreaView } from 'react-native'
 import TabRoutes from './navigation/TabRoutes'
 import { BottomNavigation, Text, Avatar, List } from 'react-native-paper';
 import { useFocusEffect, useIsFocused } from '@react-navigation/native';
@@ -53,13 +53,13 @@ export default Favorite = ({navigation}) => {
         return (
             <>
                 <View style={[styles.flatlistRenderMainView, { justifyContent: 'center', alignItems: 'center' }]}>
-                    <View style={{ backgroundColor: 'white', width: '99%', flexDirection: 'row', }}>
-                        <View style={{ flex: .2, justifyContent: 'center', alignItems: 'center', backgroundColor: 'white' }}>
+                    <View style={styles.renderItemWrapperChiledView}>
+                        <View style={styles.imageView}>
                             <Avatar.Image size={35} source={Icon} style={{ backgroundColor: 'white' }} />
                             {console.log(icon)}
                         </View>
                         <View style={{ flex: .6, flexDirection: 'row' }}>
-                            <View style={{ flex: .4, justifyContent: 'center', alignItems: 'center' }}>
+                            <View style={styles.itemLabel}>
                                 <Text>Name </Text>
                                 <Text>Price </Text>
                                 <Text>Rating </Text>
@@ -67,7 +67,7 @@ export default Favorite = ({navigation}) => {
 
 
                             </View>
-                            <View style={{ backgroundColor: null, flex: .4, justifyContent: 'center', alignItems: 'center' }}>
+                            <View style={styles.itemObjectView}>
                                 <Text>{item.name}</Text>
                                 <Text>{item.price}</Text>
                                 <Text>{item.rating}</Text>
@@ -75,8 +75,8 @@ export default Favorite = ({navigation}) => {
 
 
                         </View>
-                        <View style={{ flex: .2, backgroundColor: null, justifyContent: 'center', alignItems: 'center' }}>
-                            <Avatar.Image size={40} source={item.fav ? favorite : unfavorite} style={{ backgroundColor: 'white' }} />
+                        <View style={ styles.favoriteIconView}>
+                                <Avatar.Image size={40} source={item.fav ? favorite : unfavorite} style={{ backgroundColor: 'white' }} />
                         </View>
 
 
@@ -85,30 +85,32 @@ export default Favorite = ({navigation}) => {
 
 
                 </View>
-                <View style={{ backgroundColor: '#ccc', width: '100%', height: 1, margin: 10 }}></View>
+                <View style={styles.seperateBorderLine}></View>
             </>
         )
     }
     return (
-        <View style={styles.body}>
-            <View style={{ flex: .3, backgroundColor: 'white' }}>
+        <SafeAreaView style={{ flex: 1 }}>
+            <View style={styles.body}>
+                <View style={{ flex: .2, backgroundColor: 'white' }}>
+                    <Header name="Favorite" />
+                </View>
+               
+                <View style={{ flex: .6, }}>
+                    {/* {rebderItem(userData[0])} */}
+                    <FlatList
+                        data={data}
+                        keyExtractor={(item, index) => index.toString()}
+                        renderItem={({ item, index }) => renderItem(item, index)}
+                    />
+
+                </View>
+                <View style={{ flex: .1, backgroundColor: 'white' }}>
+
+                </View>
 
             </View>
-            <View style={{ paddingBottom: 8 }}><Text>Favorite Data</Text></View>
-            <View style={{ flex: .6, }}>
-                {/* {rebderItem(userData[0])} */}
-                <FlatList
-                    data={data}
-                    keyExtractor={(item, index) => index.toString()}
-                    renderItem={({ item, index }) => renderItem(item, index)}
-                />
-
-            </View>
-            <View style={{ flex: .1, backgroundColor: 'white' }}>
-
-            </View>
-
-        </View>
+        </SafeAreaView>
 
 
 
@@ -127,9 +129,40 @@ const styles = StyleSheet.create({
         flex: .2,
         backgroundColor: 'white',
         flexDirection: 'row',
+    },
+    seperateBorderLine: {
+        backgroundColor: '#ccc',
+        width: '100%',
+        height: 1,
+        margin: 10
 
-        // marginTop: 20,
-
-
+    },
+    imageView: {
+        flex: .2,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: 'white'
+    },
+    renderItemWrapperChiledView:{
+        backgroundColor: 'white', 
+        width: '90%', 
+        flexDirection: 'row',
+    },
+    itemLabel:{
+        flex: .4, 
+        justifyContent: 'center', 
+        alignItems: 'center'
+    },
+    itemObjectView:{
+        
+        flex: .4, 
+        justifyContent: 'center', 
+        alignItems: 'center'
+    },
+    favoriteIconView:{
+        flex: .2, 
+        
+        justifyContent: 'center', 
+        alignItems: 'center'
     }
 })
