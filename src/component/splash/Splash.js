@@ -24,7 +24,7 @@ export default Splash = ({ navigation}) => {
 
         console.log(splash)
         if (splash==='false') {
-            navigation.navigate('dashboard')
+            navigation.navigate('login')
         }
         else {
             AsyncStorage.clear()

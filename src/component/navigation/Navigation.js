@@ -11,7 +11,7 @@ import Profile from '../Profile'
 import Home from '../Home'
 import Notification from '../Favorite'
 import Setting from '../Setting'
-import Splash1 from '../splash/Splash'
+import Splash from '../splash/Splash'
 import Login from '../Login'
 import TabRoutes from './TabRoutes'
 
@@ -30,9 +30,9 @@ export default Navigation = () => {
     return (
         <NavigationContainer>
              <Stack.Navigator  
-             screenOptions={{headerShown:false,}} initialRouteName={'login'}>
+             screenOptions={{headerShown:false,}} initialRouteName={'splash'}>
                {/* {MainStack(Stack)}  */}
-               <Stack.Screen component={Splash1} name="splash1"/>
+               <Stack.Screen component={Splash} name="splash"/>
 
                <Stack.Screen component={TabRoutes} name="dashboard"/>
                <Stack.Screen component={Login} name="login"/>
