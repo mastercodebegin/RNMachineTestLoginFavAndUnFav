@@ -8,7 +8,6 @@ import favorite from '../assets/favorite.png'
 import unfavorite from '../assets/unfavorite.png'
 import Icon from '../assets/phones.jpeg'
 
-import { ListItem } from 'react-native-elements';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 

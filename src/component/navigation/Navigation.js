@@ -30,7 +30,7 @@ export default Navigation = () => {
     return (
         <NavigationContainer>
              <Stack.Navigator  
-             screenOptions={{headerShown:false,}} initialRouteName={'splash1'}>
+             screenOptions={{headerShown:false,}} initialRouteName={'login'}>
                {/* {MainStack(Stack)}  */}
                <Stack.Screen component={Splash1} name="splash1"/>
 

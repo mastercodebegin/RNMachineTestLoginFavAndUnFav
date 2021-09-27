@@ -39,9 +39,14 @@ export default Home = () => {
 
     }, [])
     const markFavriteORUnFavorite = async (item, index) => {
+
+        const AlertmsgRefrence = item.fav
+        console.log('item',item)
+
+        console.log('top',AlertmsgRefrence)
+
         if (data) {
             const favoriteData = data.filter(i => i.id !== item.id)
-
             console.log('index', index)
             console.log(item)
 
@@ -51,7 +56,13 @@ export default Home = () => {
             console.log(item)
             console.log(favoriteData)
             AsyncStorage.setItem('userdata', JSON.stringify(favoriteData))
+
             setData(favoriteData)
+            console.log('bottom',AlertmsgRefrence)
+
+          if ( AlertmsgRefrence===true)
+            {alert('Mark as Unfavorite Successfully')}
+           else{alert('Mark as favorite Successfully')}
         }
 
     }
@@ -63,7 +74,7 @@ export default Home = () => {
                     <View style={styles.renderItemWrapperChiledView}>
                         <View style={styles.imageView}>
                             <Avatar.Image size={35} source={Icon} style={{ backgroundColor: 'white' }} />
-                            {console.log(icon)}
+                            
                         </View>
                         <View style={{ flex: .6, flexDirection: 'row' }}>
                             <View style={styles.itemLabel}>
