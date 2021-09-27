@@ -32,16 +32,12 @@ export default Splash = ({ navigation}) => {
             await AsyncStorage.setItem('userdata',JSON.stringify(data))
 
             setTimeout(() => {
-                navigation.navigate('dashboard')
+                navigation.navigate('login')
             }, 1000);
 
         }
     })
 
-    submit = async () => {
-
-
-    }
 
     return (
         <SafeAreaView style={{ flex: 1 }}>
